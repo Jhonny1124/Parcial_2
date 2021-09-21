@@ -57,4 +57,8 @@ Esta parte de la solución del programa consiste en crear unos fragmentos de pro
 Después de extraer toda la información de la imagen y procesarla para tener el tamaño que se desea, esta información será guardada en un archivo para después utilizarla en el panel de led`s.
 \subsection{implementacion Arduino}
 Esta ultima tarea consiste en implementar un programa en la plataforma Tinkercad en el cual se pueda utilizar toda la información antes procesada para mostrar la imagen en un panel de led`s.
+
+\section{Algoritmo}\label{intro}
+Para poder solucionar este desafío de la mejor manera hay que entender muy bien la forma en la que se leen las imágenes, esto se va a hacer con la ayuda de la clase QImagen que nos permite sacar toda la información de los colores de una imagen en el formato RGB. Después de esto es necesario almacenar la información de los colores, se pueden hacer en diferentes estructuras como lo son arreglos o algún contenedor como los vectores. El siguiente paso es crear segmentos de código que permitan ajustar el tamaño de la imagen para poder mostrarla en los led`s disponibles, estos segmentes de código puede ser una clase que permita hacer estas funciones llamadas submuestreo y sobremuestreo. Por último, se monta un circuito de led`s en la plataforma Tinkercad y se programa de tal manera que se pueda mostrar la información antes procesada.
+
 \end{document}
