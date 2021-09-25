@@ -1,23 +1,24 @@
 #include <iostream>
 #include <QImage>
+#include <array>
 
 using namespace std;
 
-#define ImageName "../Parcial_2/Imagenes/Prueba2.jpg"
+void Numero_Caracter(int, char[]);
+
+#define ImageName "../Parcial_2/Imagenes/Prueba4.jpg"
 int main()
 {
     QImage imagen(ImageName);
 
+    array<int,144> Rojo;
+    array<int,144> Verde;
+    array<int,144> Azul;
+
+
+
     unsigned short int ancho = imagen.width(), alto = imagen.height();
-    unsigned short int Rojo[alto][ancho], Verde[alto][ancho], Azul[alto][ancho];
-    int SumaRojo = 0, SumaVerde = 0, SumaAzul = 0, cont1 = -1, cont2 = -1;
-    for(unsigned short int i = 0; i < alto; i++){
-        for(unsigned short int l = 0; l < ancho; l++){
-            Rojo[i][l] = imagen.pixelColor(l, i).red();
-            Verde[i][l]= imagen.pixelColor(l, i).green();
-            Azul[i][l] = imagen.pixelColor(l, i).blue();
-        }
-    }
+    int SumaRojo = 0, SumaVerde = 0, SumaAzul = 0, cont1 = -1, cont2 = -1, indice = -1;
     while(cont1 < 11){
         ++cont1;
         cont2 = -1;
@@ -34,8 +35,40 @@ int main()
            SumaRojo /= ((ancho/12)*(alto/12));
            SumaVerde /= ((ancho/12)*(alto/12));
            SumaAzul /= ((ancho/12)*(alto/12));
+
+           indice++;
+           Rojo.at(indice) = SumaRojo;
+           Azul.at(indice) = SumaAzul;
+           Verde.at(indice) = SumaVerde;
+           //cout << "Panel_Led.setPixelColor(" << ++indice << "," << SumaRojo << "," << SumaVerde << "," << SumaAzul << ")" << ";" <<endl;
         }
     }
 
     return 0;
+}
+
+void Numero_Caracter(int numero, char numero_car[3] ){
+    int cifras = 1, cont = 0, tem_numero = 0, restador = 10, cont2 = 0;
+    if(numero == 0){
+        numero_car[0] = '0';
+    }
+    else {
+        for(int i = 0; i < 9; i++){
+            if((numero/cifras) != 0){
+                cifras *= 10;
+                cont++;
+            }
+        }
+        for(int c = cont-1; c >= 0; c--){
+            tem_numero = numero%restador;
+            numero /= restador;
+            cont2 = 0;
+            for(int n = 48; n < 58; n++){
+                if((tem_numero) == cont2){
+                    *(numero_car+c) = char(n);
+                }
+                cont2++;
+            }
+        }
+    }
 }
