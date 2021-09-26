@@ -7,43 +7,65 @@ using namespace std;
 
 string Numero_Caracter(int);
 
-#define ImageName "../Parcial_2/Imagenes/Prueba4.jpg"
+#define ImageName "../Parcial_2/Imagenes/Prueba5.jpg"
+#define TamMatriz 12
 int main()
 {
     QImage imagen(ImageName);
 
-    array<int,144> Rojo;
-    array<int,144> Verde;
-    array<int,144> Azul;
-
+    array<string,(TamMatriz*TamMatriz)> Rojo;
+    array<string,(TamMatriz*TamMatriz)> Verde;
+    array<string,(TamMatriz*TamMatriz)> Azul;
     unsigned short int ancho = imagen.width(), alto = imagen.height();
     int SumaRojo = 0, SumaVerde = 0, SumaAzul = 0, cont1 = -1, cont2 = -1, indice = -1;
+
+    /*
     while(cont1 < 11){
         ++cont1;
         cont2 = -1;
-        while(cont2 < 11){
+        while(cont2 < (TamMatriz - 1)){
             SumaRojo = 0, SumaVerde = 0, SumaAzul = 0;
             ++cont2;
-            for(int i = (alto/12)*cont1; i < (alto/12)*(cont1+1); i++){
-               for(int l = (ancho/12)*cont2; l < (ancho/12)*(cont2+1); l++){
-                   SumaRojo += imagen.pixelColor(l, i).red();
-                   SumaVerde += imagen.pixelColor(l, i).green();
-                   SumaAzul += imagen.pixelColor(l, i).blue();
+            for(int y = (alto/(TamMatriz))*cont1; y < (alto/(TamMatriz))*(cont1+1); y++){
+               for(int x = (ancho/(TamMatriz))*cont2; x < (ancho/(TamMatriz))*(cont2+1); x++){
+                   SumaRojo += imagen.pixelColor(x, y).red();
+                   SumaVerde += imagen.pixelColor(x, y).green();
+                   SumaAzul += imagen.pixelColor(x, y).blue();
                }
            }
-           SumaRojo /= ((ancho/12)*(alto/12));
-           SumaVerde /= ((ancho/12)*(alto/12));
-           SumaAzul /= ((ancho/12)*(alto/12));
+           SumaRojo /= ((ancho/(TamMatriz))*(alto/(TamMatriz)));
+           SumaVerde /= ((ancho/(TamMatriz))*(alto/(TamMatriz)));
+           SumaAzul /= ((ancho/(TamMatriz))*(alto/(TamMatriz)));
 
            indice++;
-           Rojo.at(indice) = SumaRojo;
-           Azul.at(indice) = SumaAzul;
-           Verde.at(indice) = SumaVerde;
+           Rojo.at(indice) = Numero_Caracter(SumaRojo);
+           Azul.at(indice) = Numero_Caracter(SumaAzul);
+           Verde.at(indice) = Numero_Caracter(SumaVerde);
            //cout << "Panel_Led.setPixelColor(" << ++indice << "," << SumaRojo << "," << SumaVerde << "," << SumaAzul << ")" << ";" <<endl;
         }
     }
+    */
+    for( int y = 0; y < alto; y++){
+        cont1++;
+        for(int x = 0; x < ancho; x++){
+            for(int l = 0; l < 2; l++){
+                indice++;
+                Rojo.at(indice) = Numero_Caracter(imagen.pixelColor(x, y).red());
+                Azul.at(indice) = Numero_Caracter(imagen.pixelColor(x, y).blue());
+                Verde.at(indice) = Numero_Caracter(imagen.pixelColor(x, y).green());
+            }
+            if(Rojo.at((TamMatriz-1)*cont1) != "\0"){
+                    break;
+            }
+        }
+        if(Rojo.at((TamMatriz*TamMatriz)-1) != "\0"){
+                break;
+        }
+    }
 
-
+    for(int i = 0; i < 144; i++){
+        cout << "Panel_Led.setPixelColor(" << i << "," << Rojo.at(i) << "," << Verde.at(i) << "," << Azul.at(i) << ")" << ";" <<endl;
+    }
     return 0;
 }
 
