@@ -1,4 +1,5 @@
 #include "escalamiento.h"
+#include "escritura.h"
 #include <array>
 #include <string>
 #define ImageName "../Parcial_2/Imagenes/Prueba6.jpg"
@@ -17,6 +18,8 @@ Escalamiento::Escalamiento(QImage imagen){
     else{
         Sobremuestreo(ancho, alto, imagen);
     }
+
+    Escritura bandera(Rojo, Verde, Azul);
 }
 
 string Escalamiento::Numero_Caracter(int numero){

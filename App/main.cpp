@@ -8,7 +8,7 @@ using namespace std;
 
 string Numero_Caracter(int);
 
-#define ImageName "../Parcial_2/Imagenes/Prueba5.jpg"
+#define ImageName "../Parcial_2/Imagenes/Prueba2.jpg"
 #define TamMatriz 12
 int main()
 {
@@ -17,9 +17,8 @@ int main()
     array<string,(TamMatriz*TamMatriz)> Rojo;
     array<string,(TamMatriz*TamMatriz)> Verde;
     array<string,(TamMatriz*TamMatriz)> Azul;
-
+    string Archivo = "Salida.txt";
     Escalamiento numero(imagen);
-
     return 0;
 }
 

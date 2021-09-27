@@ -4,7 +4,9 @@ CONFIG -= app_bundle
 
 SOURCES += \
         escalamiento.cpp \
+        escritura.cpp \
         main.cpp
 
 HEADERS += \
-    escalamiento.h
+    escalamiento.h \
+    escritura.h
