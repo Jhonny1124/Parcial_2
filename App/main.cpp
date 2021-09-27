@@ -7,7 +7,7 @@ using namespace std;
 
 string Numero_Caracter(int);
 
-#define ImageName "../Parcial_2/Imagenes/Prueba5.jpg"
+#define ImageName "../Parcial_2/Imagenes/Prueba6.jpg"
 #define TamMatriz 12
 int main()
 {
@@ -20,7 +20,7 @@ int main()
     int SumaRojo = 0, SumaVerde = 0, SumaAzul = 0, cont1 = -1, cont2 = -1, indice = -1;
 
     /*
-    while(cont1 < 11){
+    while(cont1 < (TamMatriz - 1)){
         ++cont1;
         cont2 = -1;
         while(cont2 < (TamMatriz - 1)){
@@ -39,27 +39,44 @@ int main()
 
            indice++;
            Rojo.at(indice) = Numero_Caracter(SumaRojo);
-           Azul.at(indice) = Numero_Caracter(SumaAzul);
            Verde.at(indice) = Numero_Caracter(SumaVerde);
+           Azul.at(indice) = Numero_Caracter(SumaAzul);
            //cout << "Panel_Led.setPixelColor(" << ++indice << "," << SumaRojo << "," << SumaVerde << "," << SumaAzul << ")" << ";" <<endl;
         }
     }
     */
-    for( int y = 0; y < alto; y++){
-        cont1++;
-        for(int x = 0; x < ancho; x++){
-            for(int l = 0; l < 2; l++){
-                indice++;
-                Rojo.at(indice) = Numero_Caracter(imagen.pixelColor(x, y).red());
-                Azul.at(indice) = Numero_Caracter(imagen.pixelColor(x, y).blue());
-                Verde.at(indice) = Numero_Caracter(imagen.pixelColor(x, y).green());
-            }
-            if(Rojo.at((TamMatriz-1)*cont1) != "\0"){
-                    break;
-            }
+    int prueba = TamMatriz/ancho, prueba2 = TamMatriz/alto;
+    if((TamMatriz%ancho) != 0){
+        prueba += 1;
+    }
+    if((TamMatriz%alto) != 0){
+        prueba2 += 1;
+    }
+    cont1 = 0;
+
+    for(int y = 0; y < alto; y++){
+
+        if(Azul.at((TamMatriz*TamMatriz)-1) != "\0"){
+            break;
         }
-        if(Rojo.at((TamMatriz*TamMatriz)-1) != "\0"){
-                break;
+
+        for(int con = 0; con < prueba2; con++){
+            cont1++;
+            for(int x = 0; x < ancho; x++){
+                for( int l = 0; l < prueba; l++){
+                    indice++;
+                    Rojo.at(indice) = Numero_Caracter(imagen.pixelColor(x, y).red());
+                    Verde.at(indice) = Numero_Caracter(imagen.pixelColor(x, y).green());
+                    Azul.at(indice) = Numero_Caracter(imagen.pixelColor(x, y).blue());
+                    if(Azul.at((TamMatriz*cont1)-1) != "\0"){
+                        break;
+                    }
+                }
+                if(Azul.at((TamMatriz*cont1)-1) != "\0"){
+                    break;
+                }
+            }
+
         }
     }
 
