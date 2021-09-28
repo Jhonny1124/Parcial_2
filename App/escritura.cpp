@@ -1,7 +1,15 @@
 #include "escritura.h"
-#define TamMatriz 12
+
 #define File "../Parcial_2/App/"
+
+
 Escritura::Escritura(array<string, TamMatriz*TamMatriz> Rojo, array<string, TamMatriz*TamMatriz> Verde, array<string, TamMatriz*TamMatriz> Azul){
+    /**
+     * En el constructor de la clase escritura se escribe toda la informacion de la imagen procesada
+     * en un archivo llamado salida, la informacion se escribe como si fuera un arreglo bidimensional
+     * para despues manipular este arreglo en la plataforma Tinkercad
+     */
+
     ofstream out;
     out.open(File+Archivo);
 

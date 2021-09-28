@@ -4,8 +4,15 @@
 #include <array>
 #include <fstream>
 #include <iostream>
+
+/**
+  *Esta macro indica el alto y ancho de una matriz cuadrada. Se puede cambiar para diferentes tamaños
+  *siempre y cuando la matriz sea cuadrada
+  */
 #define TamMatriz 12
+
 using namespace std;
+
 class Escritura
 {
 public:

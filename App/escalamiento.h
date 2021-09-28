@@ -4,6 +4,12 @@
 #include <string>
 #include <iostream>
 #include <QImage>
+#include "escritura.h"
+
+/**
+  *Esta macro indica el alto y ancho de una matriz cuadrada. Se puede cambiar para diferentes tamaños
+  *siempre y cuando la matriz sea cuadrada
+  */
 #define TamMatriz 12
 
 using namespace std;

@@ -1,11 +1,11 @@
 #include "escalamiento.h"
-#include "escritura.h"
-#include <array>
-#include <string>
-#define ImageName "../Parcial_2/Imagenes/Prueba6.jpg"
-#define TamMatriz 12
 
 Escalamiento::Escalamiento(QImage imagen){
+    /**
+     * En el constructor de la clase escalamiento se va a procesar una imagen para ajustarla a
+     * un tamano deseado utilizando los metodos de submuestreo y sobremuestreo, despues de eso
+     * se va a hacer uso de la clase escritura para guardar la informacion de la imagen procesada
+     */
     unsigned short int ancho = imagen.width(), alto = imagen.height(), tamano = 0;
 
     if((ancho*alto) <= (TamMatriz*TamMatriz)){
@@ -23,6 +23,11 @@ Escalamiento::Escalamiento(QImage imagen){
 }
 
 string Escalamiento::Numero_Caracter(int numero){
+    /**
+      *Este metodo convierte un numero entero en un string. Por ejemplo, si se tiene
+      *el numero 123 el metodo retorna el string "123"
+      */
+
     if(numero == 0){
         return "0";
     }
@@ -47,6 +52,12 @@ string Escalamiento::Numero_Caracter(int numero){
 }
 
 void Escalamiento::Submuestreo(unsigned short _ancho, unsigned short _alto, QImage _imagen){
+    /**
+     * Este metodo procesa una imagen utilizando el submuestreo de imagenes para tener una representacion
+     * mas pequeña de su tamano original, divide la imagen en una matriz de 12x12 y saca el promedio
+     * de los colores en formato RGB de cada cuadrante resultante
+     */
+
     int SumaRojo = 0, SumaVerde = 0, SumaAzul = 0, cont1 = -1, cont2 = -1, indice = -1;
 
     while(cont1 < (TamMatriz - 1)){
@@ -75,6 +86,12 @@ void Escalamiento::Submuestreo(unsigned short _ancho, unsigned short _alto, QIma
 }
 
 void Escalamiento::Sobremuestreo(unsigned short _ancho, unsigned short _alto, QImage _imagen){
+    /**
+     * Este metodo procesa una imagen utilizando el sobremuestreo de imagenes para tener una representacion
+     * mas grande de su tamano original. Repite cada pixel, dependiendo de su ancho y largo original, hasta
+     * obtener una imagen de con el tamano deseado
+     */
+
     int cont1 = -1, indice = -1;
 
     int prueba = TamMatriz/_ancho, prueba2 = TamMatriz/_alto;
