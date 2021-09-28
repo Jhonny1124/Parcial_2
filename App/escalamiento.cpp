@@ -78,6 +78,9 @@ void Escalamiento::Submuestreo(unsigned short _ancho, unsigned short _alto, QIma
             SumaAzul /= ((_ancho/(TamMatriz))*(_alto/(TamMatriz)));
 
             indice++;
+            if(SumaRojo == 255){
+                SumaRojo--;
+            }
             Rojo.at(indice) = Numero_Caracter(SumaRojo);
             Verde.at(indice) = Numero_Caracter(SumaVerde);
             Azul.at(indice) = Numero_Caracter(SumaAzul);
